@@ -49,7 +49,7 @@ if (port == null || port == "") {
 }
 
 app.listen(port, function() {
-  console.log("Server running on port 8080");
+  console.log("Server running on port 8000");
 });
 
 /* *************** Routing ***************** */
@@ -59,7 +59,7 @@ app.get("/", function(req, res) { // Root get route
     if (foundTasks.length === 0) { // initialization if no Tasks exist
       Task.insertMany(defaultTasks, function(err) { // initialized with defaultTasks
         if(err) {
-          console.log("error");
+          console.log(err);
         } 
         else {
           console.log("success");
@@ -79,10 +79,10 @@ app.get("/", function(req, res) { // Root get route
 app.get("/:listName", function(req, res) { // Custom get route
   var listName = _.capitalize(req.params.listName);
   List.findOne({name: listName}, function(err, foundList) { // finds List with name of listName from lists collection
-    if(err) {
-      console.log("error");
-    } 
-    else{
+      if(err) {
+        console.log("error");
+      } 
+      else {
       if(!foundList) { // create List in lists collection if not found
         var list = new List ({
           name: listName,
@@ -119,11 +119,9 @@ app.post("/", function(req, res) { // Add new item
   } 
   else { // Custom route submission
     List.findOne({name: listName}, function(err, foundList) {
-      if(!err) {
-        foundList.tasks.push(task);
-        foundList.save();
-        res.redirect("/" + listName);
-      }
+      foundList.tasks.push(task);
+      foundList.save();
+      res.redirect("/" + listName);
     });
   }
 });
@@ -131,7 +129,6 @@ app.post("/", function(req, res) { // Add new item
 app.post("/delete", function(req, res) { // Delete item
   var completedTask = req.body.checkbox; // gives us id of checked task
   var listName = req.body.listName;
-  console.log(listName);
 
   if(listName === "To") { // delete tasks on root page
     Task.findByIdAndRemove(completedTask, function(err) {

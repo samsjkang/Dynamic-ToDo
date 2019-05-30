@@ -43,8 +43,12 @@ var listSchema = new Schema ({
 var List = mongoose.model("List", listSchema);
 
 /* *************** Port ***************** */
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
 
-app.listen(8080, function() {
+app.listen(port, function() {
   console.log("Server running on port 8080");
 });
 

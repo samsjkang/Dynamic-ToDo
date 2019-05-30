@@ -13,8 +13,8 @@ app.set("view engine", "ejs");
 
 /* ************** Database Setup ************** */
 
-mongoose.connect("mongodb://localhost:27017/toDoDB", {useNewUrlParser: true});
-mongoose.set("useFindAndModify", false);
+// <password> is the pw for my database so not putting that here :) 
+mongoose.connect("mongodb+srv://admin-sam:jk@cluster0-mpfdn.mongodb.net/toDoDB", {useNewUrlParser: true});
 
 // To Do Items
 var tasksSchema = new Schema ({

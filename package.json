@@ -1,9 +1,9 @@
 {
   "name": "to-do",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon src/index.js localhost 8080"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

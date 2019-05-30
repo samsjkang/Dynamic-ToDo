@@ -13,8 +13,8 @@ app.set("view engine", "ejs");
 
 /* ************** Database Setup ************** */
 
-// <password> is the pw for my database so not putting that here :) 
-mongoose.connect("mongodb+srv://admin-sam:jk@cluster0-mpfdn.mongodb.net/toDoDB", {useNewUrlParser: true});
+// db_link is the link containing info on database, user and pw so not including mine for this public repo :) 
+mongoose.connect("< db_link >", {useNewUrlParser: true});
 
 // To Do Items
 var tasksSchema = new Schema ({
